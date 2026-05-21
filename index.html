@@ -132,7 +132,7 @@
             </article>
         </section>
 
-        <section class="highlights" id="nosotros">
+        <section class="highlights" id="destacados">
             <article class="highlight-item">
                 <h3>24 horas al aire</h3>
                 <p>Musica, noticias y energia para cada momento del dia.</p>
@@ -273,24 +273,70 @@
         </section>
 
         <section class="content-grid" id="programacion">
-            <article class="panel">
+            <article class="panel schedule-panel">
                 <div class="panel-head">
                     <h2>Programacion</h2>
                     <button class="btn btn-ghost" type="button">Ver toda</button>
                 </div>
                 <ul class="schedule-list">
-                    <li><span>06:00 - 09:00</span><div><strong>Despierta con La Latina</strong><small>Noticias y actualidad</small></div></li>
-                    <li><span>09:00 - 12:00</span><div><strong>La Manana Latina</strong><small>Musica y entretenimiento</small></div></li>
-                    <li><span>12:00 - 14:00</span><div><strong>Latina Mix</strong><small>Hits latinos non-stop</small></div></li>
-                    <li><span>14:00 - 17:00</span><div><strong>En Buenas Manos</strong><small>Informacion y servicio</small></div></li>
+                    <li><span>06:00 AM - 09:00 AM</span><div><strong>Despierta con La Latina</strong><small>Noticias y actualidad</small></div></li>
+                    <li><span>09:00 AM - 12:00 PM</span><div><strong>La Manana Latina</strong><small>Musica y entretenimiento</small></div></li>
+                    <li><span>12:00 PM - 02:00 PM</span><div><strong>Latina Mix</strong><small>Lo mejor de la musica</small></div></li>
+                    <li><span>02:00 PM - 05:00 PM</span><div><strong>En Buenas Manos</strong><small>Informacion y servicio</small></div></li>
+                    <li><span>05:00 PM - 08:00 PM</span><div><strong>La Tarde Latina</strong><small>Musica y mas compania</small></div></li>
+                    <li><span>08:00 PM - 12:00 AM</span><div><strong>Noche de Estrellas</strong><small>Exitos, baladas y recuerdos</small></div></li>
+                    <li><span>12:00 AM - 06:00 AM</span><div><strong>Latina en la Madrugada</strong><small>Musica para tus noches</small></div></li>
                 </ul>
             </article>
 
-            <article class="panel">
+            <article class="panel follow-panel" id="siguenos">
+                <div class="panel-head">
+                    <h2>Siguenos</h2>
+                </div>
+                <div class="follow-list">
+                    <a class="follow-link facebook" href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+                        <span class="follow-icon" aria-hidden="true">f</span>
+                        <span><strong>Facebook</strong><small>/LaNuevaLatina</small></span>
+                        <span class="follow-arrow" aria-hidden="true">›</span>
+                    </a>
+                    <a class="follow-link instagram" href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                        <span class="follow-icon" aria-hidden="true">◎</span>
+                        <span><strong>Instagram</strong><small>@lanuevalatina</small></span>
+                        <span class="follow-arrow" aria-hidden="true">›</span>
+                    </a>
+                    <a class="follow-link whatsapp" href="https://wa.me/59170012345" target="_blank" rel="noopener noreferrer">
+                        <span class="follow-icon" aria-hidden="true">☎</span>
+                        <span><strong>WhatsApp</strong><small>+591 700 12345</small></span>
+                        <span class="follow-arrow" aria-hidden="true">›</span>
+                    </a>
+                    <a class="follow-link youtube" href="https://youtube.com" target="_blank" rel="noopener noreferrer">
+                        <span class="follow-icon" aria-hidden="true">▶</span>
+                        <span><strong>YouTube</strong><small>La Nueva Latina</small></span>
+                        <span class="follow-arrow" aria-hidden="true">›</span>
+                    </a>
+                    <a class="follow-link tiktok" href="https://tiktok.com" target="_blank" rel="noopener noreferrer">
+                        <span class="follow-icon" aria-hidden="true">♪</span>
+                        <span><strong>TikTok</strong><small>@lanuevalatina</small></span>
+                        <span class="follow-arrow" aria-hidden="true">›</span>
+                    </a>
+                    <a class="follow-link twitter" href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+                        <span class="follow-icon" aria-hidden="true">t</span>
+                        <span><strong>Twitter</strong><small>@lanuevalatina</small></span>
+                        <span class="follow-arrow" aria-hidden="true">›</span>
+                    </a>
+
+                </div>
+            </article>
+
+            <article class="panel about-panel" id="nosotros">
                 <h2>Sobre nosotros</h2>
                 <p>La Nueva Latina es una emisora construida para informar, entretener y acompanar. Apostamos por una propuesta dinamica, con voces cercanas y contenido que conecta con la comunidad.</p>
                 <p>Somos musica, cultura y compania real para Bolivia y el mundo.</p>
-                <button class="btn btn-outline" type="button">Conoce mas</button>
+                <div class="about-more" id="aboutMore" hidden>
+                    <p>Nuestra programacion combina musica latina, noticias utiles, entrevistas, participacion de la audiencia y espacios pensados para acompanar cada momento del dia.</p>
+                    <p>Trabajamos para que la radio sea cercana, alegre y activa: una voz de la comunidad dentro y fuera de Bolivia.</p>
+                </div>
+                <button class="btn btn-outline" id="aboutToggle" type="button" aria-expanded="false" aria-controls="aboutMore">Conoce mas</button>
             </article>
 
             <article class="panel" id="locutores">
