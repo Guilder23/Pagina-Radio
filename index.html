@@ -31,7 +31,7 @@
         </nav>
 
         <div class="header-actions">
-            <button class="btn btn-live">Escuchar en vivo</button>
+            <button class="btn btn-live" id="livePlayBtn" type="button" aria-pressed="false">Escuchar en vivo</button>
             <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileSidebar">
                 <span></span>
                 <span></span>
@@ -102,8 +102,9 @@
                 <input id="volumeRange" class="range" type="range" min="0" max="100" value="65">
 
                 <div class="player-actions">
-                    <button class="btn btn-play" id="playBtn" type="button">Play radio</button>
-                    <button class="btn btn-dark" type="button">Ver estudio</button>
+                    <button class="skip" id="heroVolumeDownBtn" type="button" aria-label="Bajar volumen">-</button>
+                    <button class="btn btn-play" id="playBtn" type="button" aria-label="Reproducir o pausar">Play</button>
+                    <button class="skip" id="heroVolumeUpBtn" type="button" aria-label="Subir volumen">+</button>
                 </div>
             </article>
         </section>

@@ -1,6 +1,9 @@
 const playBtn = document.getElementById("playBtn");
+const livePlayBtn = document.getElementById("livePlayBtn");
 const bottomPlay = document.getElementById("bottomPlay");
 const volumeRange = document.getElementById("volumeRange");
+const heroVolumeDownBtn = document.getElementById("heroVolumeDownBtn");
+const heroVolumeUpBtn = document.getElementById("heroVolumeUpBtn");
 const volumeDownBtn = document.getElementById("volumeDownBtn");
 const volumeUpBtn = document.getElementById("volumeUpBtn");
 const radioPlayer = document.getElementById("radioPlayer");
@@ -19,14 +22,21 @@ radioPlayer.src = streamUrl;
 radioPlayer.volume = Number(volumeRange.value) / 100;
 
 function setPlaybackUI(isPlaying, message) {
-    const label = isPlaying ? "Pausar radio" : "Play radio";
+    const label = isPlaying ? "Pausa" : "Play";
     const bottomLabel = isPlaying ? "Pausa" : "Play";
+    const liveLabel = isPlaying ? ".  Reproduciendo" : ".  Escuchar en vivo";
 
     playBtn.textContent = label;
     bottomPlay.textContent = bottomLabel;
+    livePlayBtn.textContent = liveLabel;
+    playBtn.setAttribute("aria-label", isPlaying ? "Pausar radio" : "Reproducir radio");
+    livePlayBtn.setAttribute("aria-label", isPlaying ? "Radio reproduciendose, tocar para pausar" : "Escuchar en vivo");
+    bottomPlay.setAttribute("aria-label", isPlaying ? "Pausar radio" : "Reproducir radio");
     playBtn.setAttribute("aria-pressed", String(isPlaying));
+    livePlayBtn.setAttribute("aria-pressed", String(isPlaying));
     bottomPlay.setAttribute("aria-pressed", String(isPlaying));
     playBtn.classList.toggle("is-playing", isPlaying);
+    livePlayBtn.classList.toggle("is-playing", isPlaying);
     bottomPlay.classList.toggle("is-playing", isPlaying);
     heroPlayer.classList.toggle("is-playing", isPlaying);
     bottomPlayer.classList.toggle("is-playing", isPlaying);
@@ -76,8 +86,11 @@ function closeSidebarMenu() {
 }
 
 playBtn.addEventListener("click", togglePlayback);
+livePlayBtn.addEventListener("click", togglePlayback);
 bottomPlay.addEventListener("click", togglePlayback);
 volumeRange.addEventListener("input", syncVolumeFromSlider);
+heroVolumeDownBtn.addEventListener("click", () => changeVolume(-0.1));
+heroVolumeUpBtn.addEventListener("click", () => changeVolume(0.1));
 volumeDownBtn.addEventListener("click", () => changeVolume(-0.1));
 volumeUpBtn.addEventListener("click", () => changeVolume(0.1));
 menuToggle.addEventListener("click", openSidebar);
