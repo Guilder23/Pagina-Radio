@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Nueva Latina</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="site-bg" aria-hidden="true"></div>
+
+    <header class="header">
+        <a href="#inicio" class="logo" aria-label="La Nueva Latina inicio">
+            <span class="logo-icon">N</span>
+            <span class="logo-text">
+                <strong>LA NUEVA LATINA</strong>
+                <small>Tu musica, tu radio</small>
+            </span>
+        </a>
+
+        <nav class="desktop-nav" aria-label="Navegacion principal">
+            <a href="#inicio" class="active">Inicio</a>
+            <a href="#nosotros">Nosotros</a>
+            <a href="#programacion">Programacion</a>
+            <a href="#locutores">Locutores</a>
+            <a href="#noticias">Noticias</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+
+        <div class="header-actions">
+            <button class="btn btn-live">Escuchar en vivo</button>
+            <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileSidebar">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <aside class="sidebar" id="mobileSidebar" aria-hidden="true">
+        <div class="sidebar-top">
+            <h3>Menu</h3>
+            <button type="button" id="closeSidebar" aria-label="Cerrar menu">x</button>
+        </div>
+        <nav class="sidebar-nav" aria-label="Menu movil">
+            <a href="#inicio">Inicio</a>
+            <a href="#nosotros">Nosotros</a>
+            <a href="#programacion">Programacion</a>
+            <a href="#locutores">Locutores</a>
+            <a href="#noticias">Noticias</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+    </aside>
+    <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
+
+    <main>
+        <section class="hero" id="inicio">
+            <article class="hero-left">
+                <p class="eyebrow">Radio digital premium</p>
+                <h1>LA NUEVA <span>LATINA</span></h1>
+                <p class="hero-copy">Tu musica, tu compania, tu radio. Escuchanos las 24 horas con una mezcla de hits latinos, noticias y programas en vivo.</p>
+
+                <div class="hero-features">
+                    <div class="feature-card">
+                        <h3>24/7</h3>
+                        <p>Transmision sin pausas</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Programas</h3>
+                        <p>Contenido todos los dias</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Comunidad</h3>
+                        <p>Cerca de nuestra gente</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="hero-player">
+                <span class="pill-live">En vivo</span>
+                <div class="player-cover">
+                    <img src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=1400&auto=format&fit=crop" alt="Cabina de radio en vivo">
+                </div>
+                <div class="player-meta">
+                    <strong>La Nueva Latina Live Set</strong>
+                    <small>Estudio central</small>
+                </div>
+
+                <label class="sr-only" for="volumeRange">Volumen</label>
+                <input id="volumeRange" class="range" type="range" min="0" max="100" value="65">
+
+                <div class="player-actions">
+                    <button class="btn btn-play" id="playBtn" type="button">Play radio</button>
+                    <button class="btn btn-dark" type="button">Ver estudio</button>
+                </div>
+            </article>
+        </section>
+
+        <section class="highlights" id="nosotros">
+            <article class="highlight-item">
+                <h3>24 horas al aire</h3>
+                <p>Musica, noticias y energia para cada momento del dia.</p>
+            </article>
+            <article class="highlight-item">
+                <h3>Programacion variada</h3>
+                <p>Magazines, entrevistas, actualidad y playlists exclusivas.</p>
+            </article>
+            <article class="highlight-item">
+                <h3>Conectados contigo</h3>
+                <p>Participa por WhatsApp y redes sociales en tiempo real.</p>
+            </article>
+        </section>
+
+        <section class="content-grid" id="programacion">
+            <article class="panel">
+                <div class="panel-head">
+                    <h2>Programacion</h2>
+                    <button class="btn btn-ghost" type="button">Ver toda</button>
+                </div>
+                <ul class="schedule-list">
+                    <li><span>06:00 - 09:00</span><div><strong>Despierta con La Latina</strong><small>Noticias y actualidad</small></div></li>
+                    <li><span>09:00 - 12:00</span><div><strong>La Manana Latina</strong><small>Musica y entretenimiento</small></div></li>
+                    <li><span>12:00 - 14:00</span><div><strong>Latina Mix</strong><small>Hits latinos non-stop</small></div></li>
+                    <li><span>14:00 - 17:00</span><div><strong>En Buenas Manos</strong><small>Informacion y servicio</small></div></li>
+                </ul>
+            </article>
+
+            <article class="panel">
+                <h2>Sobre nosotros</h2>
+                <p>La Nueva Latina es una emisora construida para informar, entretener y acompanar. Apostamos por una propuesta dinamica, con voces cercanas y contenido que conecta con la comunidad.</p>
+                <p>Somos musica, cultura y compania real para Bolivia y el mundo.</p>
+                <button class="btn btn-outline" type="button">Conoce mas</button>
+            </article>
+
+            <article class="panel" id="locutores">
+                <div class="panel-head">
+                    <h2>Nuestros locutores</h2>
+                    <button class="btn btn-ghost" type="button">Ver todos</button>
+                </div>
+                <div class="hosts-grid">
+                    <div class="host-card">
+                        <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=900&auto=format&fit=crop" alt="Locutora Carolina Lopez">
+                        <strong>Carolina Lopez</strong>
+                        <small>Locutora</small>
+                    </div>
+                    <div class="host-card">
+                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=900&auto=format&fit=crop" alt="Locutor Javier Morales">
+                        <strong>Javier Morales</strong>
+                        <small>Locutor</small>
+                    </div>
+                    <div class="host-card">
+                        <img src="https://images.unsplash.com/photo-1548142813-c348350df52b?q=80&w=900&auto=format&fit=crop" alt="Locutora Daniela Vargas">
+                        <strong>Daniela Vargas</strong>
+                        <small>Locutora</small>
+                    </div>
+                    <div class="host-card">
+                        <img src="https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?q=80&w=900&auto=format&fit=crop" alt="Locutor Luis Ramirez">
+                        <strong>Luis Ramirez</strong>
+                        <small>Locutor</small>
+                    </div>
+                </div>
+            </article>
+
+            <article class="panel panel-news" id="noticias">
+                <h2>Noticias destacadas</h2>
+                <a href="#">Cochabamba celebra su aniversario</a>
+                <a href="#">Festival de musica latina este fin de semana</a>
+                <a href="#">Deportes: lo ultimo del futbol boliviano</a>
+                <button class="btn btn-outline" type="button">Ver mas noticias</button>
+            </article>
+        </section>
+    </main>
+
+    <div class="bottom-player">
+        <div>
+            <strong>La Nueva Latina en vivo</strong>
+            <small>Tu musica, tu compania, tu radio.</small>
+        </div>
+        <div class="bottom-controls">
+            <button class="skip" type="button" aria-label="Anterior">|&lt;</button>
+            <button class="circle-play" id="bottomPlay" type="button" aria-label="Reproducir o pausar">Play</button>
+            <button class="skip" type="button" aria-label="Siguiente">&gt;|</button>
+        </div>
+    </div>
+
+    <footer id="contacto">
+        <div class="footer-grid">
+            <div>
+                <h3>La Nueva Latina</h3>
+                <p>La radio que te acompana siempre.</p>
+            </div>
+            <div>
+                <h3>Enlaces</h3>
+                <a href="#inicio">Inicio</a>
+                <a href="#programacion">Programacion</a>
+                <a href="#noticias">Noticias</a>
+            </div>
+            <div>
+                <h3>Contacto</h3>
+                <p>+591 700 12345</p>
+                <p>info@lanuevalatina.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
