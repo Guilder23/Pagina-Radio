@@ -5,6 +5,8 @@ const volumeDownBtn = document.getElementById("volumeDownBtn");
 const volumeUpBtn = document.getElementById("volumeUpBtn");
 const radioPlayer = document.getElementById("radioPlayer");
 const playerStatus = document.getElementById("playerStatus");
+const heroPlayer = document.querySelector(".hero-player");
+const bottomPlayer = document.querySelector(".bottom-player");
 const menuToggle = document.getElementById("menuToggle");
 const closeSidebar = document.getElementById("closeSidebar");
 const sidebar = document.getElementById("mobileSidebar");
@@ -24,6 +26,10 @@ function setPlaybackUI(isPlaying, message) {
     bottomPlay.textContent = bottomLabel;
     playBtn.setAttribute("aria-pressed", String(isPlaying));
     bottomPlay.setAttribute("aria-pressed", String(isPlaying));
+    playBtn.classList.toggle("is-playing", isPlaying);
+    bottomPlay.classList.toggle("is-playing", isPlaying);
+    heroPlayer.classList.toggle("is-playing", isPlaying);
+    bottomPlayer.classList.toggle("is-playing", isPlaying);
 
     if (message) {
         playerStatus.textContent = message;

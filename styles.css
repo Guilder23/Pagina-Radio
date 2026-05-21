@@ -262,6 +262,22 @@ main {
     padding: 18px;
     display: grid;
     gap: 14px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-player::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(0, 215, 255, 0.18), transparent 38%);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    pointer-events: none;
+}
+
+.hero-player.is-playing::after {
+    opacity: 1;
 }
 
 .pill-live {
@@ -308,6 +324,55 @@ main {
     color: var(--muted);
     font-size: 0.92rem;
     line-height: 1.45;
+}
+
+.player-visualizer {
+    display: flex;
+    align-items: end;
+    gap: 4px;
+    height: 22px;
+}
+
+.player-visualizer span {
+    width: 6px;
+    height: 30%;
+    border-radius: 999px;
+    background: linear-gradient(180deg, var(--secondary), var(--primary));
+    opacity: 0.35;
+    transform-origin: bottom;
+}
+
+.hero-player.is-playing .player-visualizer span {
+    animation: equalize 0.9s ease-in-out infinite;
+    opacity: 1;
+    box-shadow: 0 0 16px rgba(0, 215, 255, 0.35);
+}
+
+.hero-player.is-playing .player-visualizer span:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.hero-player.is-playing .player-visualizer span:nth-child(2) {
+    animation-delay: 0.12s;
+}
+
+.hero-player.is-playing .player-visualizer span:nth-child(3) {
+    animation-delay: 0.24s;
+}
+
+.hero-player.is-playing .player-visualizer span:nth-child(4) {
+    animation-delay: 0.36s;
+}
+
+@keyframes equalize {
+    0%,
+    100% {
+        transform: scaleY(0.35);
+    }
+
+    50% {
+        transform: scaleY(1);
+    }
 }
 
 .range {
@@ -502,10 +567,14 @@ main {
     opacity: 0.9;
 }
 
+.bottom-player.is-playing {
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.28), 0 16px 34px rgba(0, 0, 0, 0.32), 0 0 28px rgba(0, 215, 255, 0.18);
+}
+
 .bottom-controls {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
 }
 
 .skip,
@@ -516,8 +585,21 @@ main {
 }
 
 .skip {
-    background: transparent;
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.22);
     font-weight: 700;
+    font-size: 1.1rem;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 8px 18px rgba(0, 0, 0, 0.12);
+    transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.skip:hover {
+    transform: translateY(-1px) scale(1.03);
+    background: rgba(255, 255, 255, 0.22);
+    border-color: rgba(255, 255, 255, 0.35);
 }
 
 .circle-play {
@@ -526,6 +608,25 @@ main {
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.2);
     font-weight: 800;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 10px 20px rgba(0, 0, 0, 0.18);
+    transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.circle-play.is-playing {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.14), 0 0 20px rgba(255, 255, 255, 0.18), 0 12px 24px rgba(0, 0, 0, 0.2);
+    animation: pulsePlay 1.3s ease-in-out infinite;
+}
+
+@keyframes pulsePlay {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.06);
+    }
 }
 
 footer {
@@ -706,6 +807,11 @@ audio {
         align-items: flex-start;
         flex-direction: column;
         gap: 10px;
+    }
+
+    .bottom-controls {
+        width: 100%;
+        justify-content: flex-end;
     }
 
     .footer-grid {
