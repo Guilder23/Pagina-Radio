@@ -89,6 +89,8 @@
                     <small>Estudio central</small>
                 </div>
 
+                <p class="player-status" id="playerStatus">Listo para reproducir la radio en vivo.</p>
+
                 <label class="sr-only" for="volumeRange">Volumen</label>
                 <input id="volumeRange" class="range" type="range" min="0" max="100" value="65">
 
@@ -180,11 +182,13 @@
             <small>Tu musica, tu compania, tu radio.</small>
         </div>
         <div class="bottom-controls">
-            <button class="skip" type="button" aria-label="Anterior">|&lt;</button>
+            <button class="skip" id="volumeDownBtn" type="button" aria-label="Bajar volumen">-</button>
             <button class="circle-play" id="bottomPlay" type="button" aria-label="Reproducir o pausar">Play</button>
-            <button class="skip" type="button" aria-label="Siguiente">&gt;|</button>
+            <button class="skip" id="volumeUpBtn" type="button" aria-label="Subir volumen">+</button>
         </div>
     </div>
+
+    <audio id="radioPlayer" preload="none" playsinline></audio>
 
     <footer id="contacto">
         <div class="footer-grid">
