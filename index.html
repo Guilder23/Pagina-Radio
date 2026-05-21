@@ -61,25 +61,34 @@
     <main>
         <section class="hero" id="inicio">
             <article class="hero-left">
-                <p class="eyebrow">Radio digital premium</p>
                 <h1 class="hero-title" aria-label="LA NUEVA LATINA">
                     <span class="hero-title-line hero-title-line-top" data-text="LA NUEVA"></span>
                     <span class="hero-title-line hero-title-line-bottom" data-text="LATINA"></span>
                 </h1>
-                <p class="hero-copy">Tu musica, tu compania, tu radio. Escuchanos las 24 horas con una mezcla de hits latinos, noticias y programas en vivo.</p>
+                <p class="hero-tagline">Tu musica, tu compania, tu radio.</p>
+                <p class="hero-copy">Escuchanos en vivo las 24 horas con la mejor musica, informacion y entretenimiento.</p>
 
                 <div class="hero-features">
-                    <div class="feature-card">
-                        <h3>24/7</h3>
-                        <p>Transmision sin pausas</p>
+                    <div class="feature-card" aria-label="Transmision en vivo 24/7">
+                        <span class="feature-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24"><path d="M7 4h10v4h1.5A2.5 2.5 0 0 1 21 10.5v7A2.5 2.5 0 0 1 18.5 20h-13A2.5 2.5 0 0 1 3 17.5v-7A2.5 2.5 0 0 1 5.5 8H7V4Zm2 4h6V6H9v2Zm-3.5 2A.5.5 0 0 0 5 10.5v7a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.5-.5h-13Zm2.5 2.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm8-.5h2v2h-2v-2Zm-4 0h2v2h-2v-2Zm4 4h2v2h-2v-2Zm-4 0h2v2h-2v-2Z"/></svg>
+                        </span>
+                        <strong>Transmision</strong>
+                        <p>En vivo 24/7</p>
                     </div>
-                    <div class="feature-card">
-                        <h3>Programas</h3>
-                        <p>Contenido todos los dias</p>
+                    <div class="feature-card" aria-label="La mejor musica">
+                        <span class="feature-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24"><path d="M18 3v12.25A3.75 3.75 0 1 1 16 12V7.2l-8 1.6v8.45A3.75 3.75 0 1 1 6 14V6l12-3Z"/></svg>
+                        </span>
+                        <strong>La mejor</strong>
+                        <p>Musica</p>
                     </div>
-                    <div class="feature-card">
-                        <h3>Comunidad</h3>
-                        <p>Cerca de nuestra gente</p>
+                    <div class="feature-card" aria-label="Cerca de nuestra gente">
+                        <span class="feature-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24"><path d="M9 11a4 4 0 1 1 3.2-1.6A4.98 4.98 0 0 0 9 14a5 5 0 0 0-5 5v1H2v-1a7 7 0 0 1 4.18-6.4A4 4 0 0 1 9 11Zm8-1a3 3 0 1 1 0-6 3 3 0 0 1 0 6Zm-8 2a3 3 0 0 1 3 3v1h1a3 3 0 1 1-3 3v-1H8v1a3 3 0 1 1-3-3h1v-1a3 3 0 0 1 3-3Zm0 2a1 1 0 0 0-1 1v3h3a1 1 0 1 0 0-2H9v-1a1 1 0 0 0-1-1Z"/></svg>
+                        </span>
+                        <strong>Cerca de</strong>
+                        <p>Nuestra gente</p>
                     </div>
                 </div>
             </article>
@@ -88,29 +97,38 @@
                 <span class="pill-live">En vivo</span>
                 <div class="player-cover">
                     <img src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=1400&auto=format&fit=crop" alt="Cabina de radio en vivo">
+                    <iframe
+                        id="youtubeLiveFrame"
+                        title="Video en vivo de La Nueva Latina"
+                        data-src="https://www.youtube.com/embed/Rfg0tf7imVA?autoplay=1&mute=1&controls=1&rel=0&playsinline=1"
+                        allow="autoplay; encrypted-media; picture-in-picture"
+                        allowfullscreen></iframe>
+                    <button class="btn btn-watch" id="watchLiveBtn" type="button" aria-label="Ver transmision en vivo" aria-pressed="false">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v1.2l3-1.7V17.5l-3-1.7V17a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7Z"/></svg>
+                        <span>Ver en vivo</span>
+                    </button>
                 </div>
-                <div class="player-meta">
-                    <strong>La Nueva Latina Live Set</strong>
-                    <small>Estudio central</small>
+                <div class="player-live-row">
+                    <div class="player-volume-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4Zm12.4-.6 1.4-1.4A7 7 0 0 1 20 12a7 7 0 0 1-2.2 5l-1.4-1.4A5 5 0 0 0 18 12a5 5 0 0 0-1.6-3.6Z"/></svg>
+                    </div>
+                    <label class="sr-only" for="volumeRange">Volumen</label>
+                    <input id="volumeRange" class="range" type="range" min="0" max="100" value="65">
+                    <span class="player-onair"><span aria-hidden="true"></span>En vivo</span>
                 </div>
-
-                <p class="player-status" id="playerStatus">Listo para reproducir la radio en vivo.</p>
-
-                <div class="player-visualizer" aria-hidden="true">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-
-                <label class="sr-only" for="volumeRange">Volumen</label>
-                <input id="volumeRange" class="range" type="range" min="0" max="100" value="65">
 
                 <div class="player-actions">
                     <button class="skip" id="heroVolumeDownBtn" type="button" aria-label="Bajar volumen">-</button>
-                    <button class="btn btn-play" id="playBtn" type="button" aria-label="Reproducir o pausar">Play</button>
+                    <button class="btn btn-play" id="playBtn" type="button" aria-label="Reproducir o pausar">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7L8 5Z"/></svg>
+                        <span>Escuchar radio</span>
+                    </button>
                     <button class="skip" id="heroVolumeUpBtn" type="button" aria-label="Subir volumen">+</button>
+                    <button class="skip share-btn" id="sharePageBtn" type="button" aria-label="Compartir pagina">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16.1c-.76 0-1.44.3-1.96.77L8.9 12.72a3.27 3.27 0 0 0 0-1.44l7.05-4.1A2.99 2.99 0 1 0 15 5c0 .24.03.47.08.69L8.03 9.8a3 3 0 1 0 0 4.4l7.12 4.18c-.05.2-.08.42-.08.64A2.93 2.93 0 1 0 18 16.1Z"/></svg>
+                    </button>
                 </div>
+                <p class="player-status" id="playerStatus">Listo para reproducir la radio en vivo.</p>
             </article>
         </section>
 

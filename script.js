@@ -4,6 +4,9 @@ const bottomPlay = document.getElementById("bottomPlay");
 const volumeRange = document.getElementById("volumeRange");
 const heroVolumeDownBtn = document.getElementById("heroVolumeDownBtn");
 const heroVolumeUpBtn = document.getElementById("heroVolumeUpBtn");
+const watchLiveBtn = document.getElementById("watchLiveBtn");
+const youtubeLiveFrame = document.getElementById("youtubeLiveFrame");
+const sharePageBtn = document.getElementById("sharePageBtn");
 const volumeDownBtn = document.getElementById("volumeDownBtn");
 const volumeUpBtn = document.getElementById("volumeUpBtn");
 const radioPlayer = document.getElementById("radioPlayer");
@@ -28,11 +31,16 @@ playlistPlayer.src = "audio/audio1.mp3";
 playlistPlayer.preload = "metadata";
 
 function setPlaybackUI(isPlaying, message) {
-    const label = isPlaying ? "Pausa" : "Play";
+    const playLabel = playBtn.querySelector("span");
+    const label = isPlaying ? "Pausar radio" : "Escuchar radio";
     const bottomLabel = isPlaying ? "Pausa" : "Play";
     const liveLabel = isPlaying ? ".  Reproduciendo" : ".  Escuchar en vivo";
 
-    playBtn.textContent = label;
+    if (playLabel) {
+        playLabel.textContent = label;
+    } else {
+        playBtn.textContent = label;
+    }
     bottomPlay.textContent = bottomLabel;
     livePlayBtn.textContent = liveLabel;
     playBtn.setAttribute("aria-label", isPlaying ? "Pausar radio" : "Reproducir radio");
@@ -53,6 +61,8 @@ function setPlaybackUI(isPlaying, message) {
 }
 
 function togglePlayback() {
+    showRadioMode();
+
     if (radioPlayer.paused) {
         playerStatus.textContent = "Conectando con la radio...";
         radioPlayer.play().catch(() => {
@@ -63,6 +73,64 @@ function togglePlayback() {
 
     radioPlayer.pause();
     setPlaybackUI(false, "Radio en pausa.");
+}
+
+function showVideoMode() {
+    if (!youtubeLiveFrame.getAttribute("src")) {
+        youtubeLiveFrame.setAttribute("src", youtubeLiveFrame.dataset.src);
+    }
+
+    heroPlayer.classList.add("is-video");
+    watchLiveBtn.classList.add("is-active");
+    watchLiveBtn.setAttribute("aria-pressed", "true");
+    watchLiveBtn.querySelector("span").textContent = "Solo escuchar";
+    watchLiveBtn.setAttribute("aria-label", "Volver a solo escuchar la radio");
+    playerStatus.textContent = radioPlayer.paused
+        ? "Video en vivo muteado. Puedes activar la radio cuando quieras."
+        : "Video en vivo muteado. La radio sigue sonando.";
+}
+
+function showRadioMode() {
+    heroPlayer.classList.remove("is-video");
+    watchLiveBtn.classList.remove("is-active");
+    watchLiveBtn.setAttribute("aria-pressed", "false");
+    watchLiveBtn.querySelector("span").textContent = "Ver en vivo";
+    watchLiveBtn.setAttribute("aria-label", "Ver transmision en vivo");
+
+    if (youtubeLiveFrame.getAttribute("src")) {
+        youtubeLiveFrame.removeAttribute("src");
+    }
+}
+
+function toggleVideoMode() {
+    if (heroPlayer.classList.contains("is-video")) {
+        showRadioMode();
+        playerStatus.textContent = radioPlayer.paused ? "Radio en pausa." : "Transmitiendo en vivo.";
+        return;
+    }
+
+    showVideoMode();
+}
+
+async function sharePage() {
+    const shareData = {
+        title: document.title,
+        text: "Escucha La Nueva Latina en vivo.",
+        url: window.location.href,
+    };
+
+    if (navigator.share) {
+        await navigator.share(shareData).catch(() => {});
+        return;
+    }
+
+    if (navigator.clipboard) {
+        await navigator.clipboard.writeText(shareData.url);
+        playerStatus.textContent = "Enlace copiado para compartir.";
+        return;
+    }
+
+    playerStatus.textContent = "Copia el enlace de la barra del navegador para compartir.";
 }
 
 function changeVolume(step) {
@@ -187,6 +255,8 @@ function closeSidebarMenu() {
 playBtn.addEventListener("click", togglePlayback);
 livePlayBtn.addEventListener("click", togglePlayback);
 bottomPlay.addEventListener("click", togglePlayback);
+watchLiveBtn.addEventListener("click", toggleVideoMode);
+sharePageBtn.addEventListener("click", sharePage);
 volumeRange.addEventListener("input", syncVolumeFromSlider);
 heroVolumeDownBtn.addEventListener("click", () => changeVolume(-0.1));
 heroVolumeUpBtn.addEventListener("click", () => changeVolume(0.1));
