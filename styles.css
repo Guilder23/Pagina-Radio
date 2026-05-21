@@ -1099,23 +1099,54 @@ main {
     transform: translateX(-50%);
     width: min(1200px, 92%);
     z-index: 18;
-    border-radius: 17px;
+    min-height: 76px;
+    border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.25);
-    background: linear-gradient(100deg, rgba(255, 45, 120, 0.94), rgba(255, 108, 57, 0.94));
-    display: flex;
-    justify-content: space-between;
+    background: linear-gradient(100deg, rgba(214, 5, 87, 0.96), rgba(189, 16, 87, 0.96), rgba(238, 48, 91, 0.96));
+    display: grid;
+    grid-template-columns: minmax(220px, 1fr) auto minmax(220px, 1fr);
+    gap: 18px;
     align-items: center;
-    padding: 13px 16px;
+    padding: 10px 22px;
     box-shadow: 0 16px 34px rgba(0, 0, 0, 0.32);
 }
 
-.bottom-player strong,
-.bottom-player small {
+.bottom-brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-width: 0;
+}
+
+.bottom-brand img {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    object-fit: contain;
+    background: rgba(0, 0, 0, 0.72);
+    padding: 5px;
+    flex: 0 0 auto;
+}
+
+.bottom-copy {
+    min-width: 0;
+}
+
+.bottom-copy strong,
+.bottom-copy small {
     display: block;
 }
 
-.bottom-player small {
+.bottom-copy strong {
+    font-size: 1rem;
+    line-height: 1.1;
+    text-transform: uppercase;
+}
+
+.bottom-copy small {
     opacity: 0.9;
+    font-size: 0.82rem;
+    margin-top: 4px;
 }
 
 .bottom-player.is-playing {
@@ -1125,7 +1156,8 @@ main {
 .bottom-controls {
     display: inline-flex;
     align-items: center;
-    gap: 12px;
+    justify-content: center;
+    gap: 16px;
 }
 
 .skip,
@@ -1136,30 +1168,30 @@ main {
 }
 
 .skip {
-    width: 42px;
-    height: 42px;
-    border-radius: 14px;
-    background: rgba(255, 255, 255, 0.14);
-    border: 1px solid rgba(255, 255, 255, 0.22);
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: transparent;
+    border: 0;
     font-weight: 700;
-    font-size: 1.1rem;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 8px 18px rgba(0, 0, 0, 0.12);
+    font-size: 1.28rem;
+    box-shadow: none;
     transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
 }
 
 .skip:hover {
     transform: translateY(-1px) scale(1.03);
-    background: rgba(255, 255, 255, 0.22);
-    border-color: rgba(255, 255, 255, 0.35);
+    background: rgba(255, 255, 255, 0.14);
 }
 
 .circle-play {
-    width: 44px;
-    height: 44px;
+    width: 58px;
+    height: 58px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.2);
+    background: #fff;
+    color: var(--primary);
     font-weight: 800;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 10px 20px rgba(0, 0, 0, 0.18);
+    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.24);
     transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -1169,9 +1201,32 @@ main {
 }
 
 .circle-play.is-playing {
-    background: rgba(255, 255, 255, 0.3);
+    background: #fff;
     box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.14), 0 0 20px rgba(255, 255, 255, 0.18), 0 12px 24px rgba(0, 0, 0, 0.2);
     animation: pulsePlay 1.3s ease-in-out infinite;
+}
+
+.bottom-wave {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    height: 42px;
+}
+
+.bottom-wave span {
+    width: 3px;
+    height: 12px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.72);
+}
+
+.bottom-wave span:nth-child(2n) {
+    height: 22px;
+}
+
+.bottom-wave span:nth-child(3n) {
+    height: 34px;
 }
 
 @keyframes pulsePlay {
@@ -1266,7 +1321,7 @@ footer {
 .whatsapp-float {
     position: fixed;
     right: 18px;
-    bottom: 88px;
+    bottom: 118px;
     z-index: 40;
     display: inline-flex;
     align-items: center;
@@ -1504,15 +1559,36 @@ audio {
 
     .bottom-player {
         bottom: 8px;
-        padding: 11px 12px;
-        align-items: flex-start;
-        flex-direction: column;
+        min-height: 58px;
+        grid-template-columns: auto 1fr;
         gap: 10px;
+        padding: 7px 10px;
     }
 
     .bottom-controls {
         width: 100%;
-        justify-content: flex-end;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .bottom-copy,
+    .bottom-wave {
+        display: none;
+    }
+
+    .bottom-brand img {
+        width: 42px;
+        height: 42px;
+    }
+
+    .circle-play {
+        width: 46px;
+        height: 46px;
+    }
+
+    .bottom-controls .skip {
+        width: 34px;
+        height: 34px;
     }
 
     .footer-grid {
@@ -1521,7 +1597,7 @@ audio {
 
     .whatsapp-float {
         right: 12px;
-        bottom: 78px;
+        bottom: 104px;
         width: 54px;
         height: 54px;
     }

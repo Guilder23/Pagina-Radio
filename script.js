@@ -30,7 +30,7 @@ radioPlayer.volume = Number(volumeRange.value) / 100;
 function setPlaybackUI(isPlaying, message) {
     const playLabel = playBtn.querySelector("span");
     const label = isPlaying ? "Pausar radio" : "Escuchar radio";
-    const bottomLabel = isPlaying ? "Pausa" : "Play";
+    const bottomLabel = isPlaying ? "❚❚" : "▶";
     const liveLabel = isPlaying ? ".  Reproduciendo" : ".  Escuchar en vivo";
 
     if (playLabel) {
