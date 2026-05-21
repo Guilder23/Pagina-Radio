@@ -1026,45 +1026,52 @@ main {
 }
 
 .hosts-grid {
-    margin-top: 10px;
+    margin-top: 14px;
     display: grid;
-    gap: 10px;
+    gap: 18px;
     grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .host-card {
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(255, 255, 255, 0.03);
+    border: 0;
+    background: transparent;
+    padding: 4px 6px 0;
+    text-align: center;
     transition: 0.25s;
 }
 
 .host-card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-3px);
 }
 
 .host-card img {
-    width: 100%;
-    height: 140px;
+    width: 122px;
+    height: 122px;
+    border-radius: 50%;
     object-fit: cover;
+    display: block;
+    margin: 0 auto;
+    border: 3px solid rgba(255, 45, 120, 0.55);
+    box-shadow: 0 0 22px rgba(255, 45, 120, 0.18);
 }
 
 .host-card strong,
 .host-card small {
     display: block;
-    padding: 0 10px;
+    padding: 0;
 }
 
 .host-card strong {
-    margin-top: 10px;
-    font-size: 0.95rem;
+    margin: 12px auto 0;
+    max-width: 130px;
+    font-size: 1rem;
+    line-height: 1.2;
 }
 
 .host-card small {
     color: var(--primary);
     font-weight: 700;
-    margin: 2px 0 12px;
+    margin: 4px 0 0;
 }
 
 .panel-news {
