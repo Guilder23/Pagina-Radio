@@ -10,12 +10,9 @@ const sharePageBtn = document.getElementById("sharePageBtn");
 const volumeDownBtn = document.getElementById("volumeDownBtn");
 const volumeUpBtn = document.getElementById("volumeUpBtn");
 const radioPlayer = document.getElementById("radioPlayer");
-const playlistPlayer = document.getElementById("playlistPlayer");
 const playerStatus = document.getElementById("playerStatus");
 const heroPlayer = document.querySelector(".hero-player");
 const bottomPlayer = document.querySelector(".bottom-player");
-const playlistCards = document.querySelectorAll(".playlist-card");
-const playlistButtons = document.querySelectorAll(".playlist-play-btn");
 const heroTitle = document.querySelector(".hero-title");
 const menuToggle = document.getElementById("menuToggle");
 const closeSidebar = document.getElementById("closeSidebar");
@@ -27,8 +24,6 @@ const streamUrl = "https://stream-02.surfernetwork.com/sfqwqh7vd6quv?zt=eyJhbGci
 
 radioPlayer.src = streamUrl;
 radioPlayer.volume = Number(volumeRange.value) / 100;
-playlistPlayer.src = "audio/audio1.mp3";
-playlistPlayer.preload = "metadata";
 
 function setPlaybackUI(isPlaying, message) {
     const playLabel = playBtn.querySelector("span");
@@ -193,49 +188,6 @@ function typeHeroTitle() {
     tick();
 }
 
-function updatePlaylistCards(activeButton, isPlaying) {
-    playlistButtons.forEach((button) => {
-        const buttonPlaying = button === activeButton && isPlaying;
-        button.textContent = buttonPlaying ? "Pausa" : "Play";
-        button.classList.toggle("is-playing", buttonPlaying);
-        button.setAttribute("aria-pressed", String(buttonPlaying));
-    });
-
-    playlistCards.forEach((card) => {
-        const belongsToActiveButton = activeButton ? card.contains(activeButton) : false;
-        card.classList.toggle("is-playing", belongsToActiveButton && isPlaying);
-    });
-}
-
-function togglePlaylistPreview(button) {
-    const card = button.closest(".playlist-card");
-
-    if (!card) {
-        return;
-    }
-
-    if (!playlistPlayer.paused && !button.classList.contains("is-playing")) {
-        playlistPlayer.pause();
-    }
-
-    if (button.classList.contains("is-playing")) {
-        playlistPlayer.pause();
-        updatePlaylistCards(button, false);
-        return;
-    }
-
-    if (!radioPlayer.paused) {
-        radioPlayer.pause();
-    }
-
-    playlistPlayer.currentTime = 0;
-    playlistPlayer.play().then(() => {
-        updatePlaylistCards(button, true);
-    }).catch(() => {
-        updatePlaylistCards(button, false);
-    });
-}
-
 function openSidebar() {
     sidebar.classList.add("active");
     overlay.classList.add("active");
@@ -262,9 +214,6 @@ heroVolumeDownBtn.addEventListener("click", () => changeVolume(-0.1));
 heroVolumeUpBtn.addEventListener("click", () => changeVolume(0.1));
 volumeDownBtn.addEventListener("click", () => changeVolume(-0.1));
 volumeUpBtn.addEventListener("click", () => changeVolume(0.1));
-playlistButtons.forEach((button) => {
-    button.addEventListener("click", () => togglePlaylistPreview(button));
-});
 menuToggle.addEventListener("click", openSidebar);
 closeSidebar.addEventListener("click", closeSidebarMenu);
 overlay.addEventListener("click", closeSidebarMenu);
@@ -293,14 +242,6 @@ radioPlayer.addEventListener("waiting", () => {
 
 radioPlayer.addEventListener("error", () => {
     setPlaybackUI(false, "No se pudo cargar la radio. Verifica el enlace o reintenta.");
-});
-
-playlistPlayer.addEventListener("pause", () => {
-    updatePlaylistCards(null, false);
-});
-
-playlistPlayer.addEventListener("ended", () => {
-    updatePlaylistCards(null, false);
 });
 
 setPlaybackUI(false, "Listo para reproducir la radio en vivo.");

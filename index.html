@@ -151,48 +151,124 @@
             <div class="section-head">
                 <div>
                     <p class="eyebrow">Playlist destacada</p>
-                    <h2>Musicas mas escuchadas</h2>
+                    <h2>Las 10 mas escuchadas</h2>
                 </div>
-                <button class="btn btn-ghost" type="button">Ver playlist completa</button>
+                <button class="btn btn-ghost" type="button">Ver todas</button>
             </div>
 
-            <div class="playlist-grid">
-                <article class="playlist-card" data-track-title="Mix Latina 2026">
-                    <span class="playlist-rank">01</span>
-                    <div class="playlist-copy">
-                        <h3>Mix Latina 2026</h3>
-                        <p>Los temas mas pedidos de la semana.</p>
-                        <small>+ 1.2M reproducciones</small>
+            <div class="playlist-carousel" aria-label="Carrusel de las canciones mas escuchadas">
+                <button class="carousel-btn carousel-btn-prev" id="playlistPrev" type="button" aria-label="Ver canciones anteriores">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.4 5.4 8.8 12l6.6 6.6-1.8 1.8L5.2 12l8.4-8.4 1.8 1.8Z"/></svg>
+                </button>
+
+                <div class="playlist-viewport" id="playlistViewport" tabindex="0">
+                    <div class="playlist-track">
+                        <article class="playlist-card" data-track-title="Mix Latina 2026" data-track-src="audio/audio1.mp3">
+                            <span class="playlist-rank">01</span>
+                            <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?q=80&w=900&auto=format&fit=crop" alt="Portada de Mix Latina 2026">
+                            <div class="playlist-copy">
+                                <h3>Mix Latina 2026</h3>
+                                <p>Los temas mas pedidos de la semana.</p>
+                                <small>+ 1.2M reproducciones</small>
+                            </div>
+                            <button class="playlist-play-btn" type="button" aria-pressed="false">Play</button>
+                        </article>
+                        <article class="playlist-card" data-track-title="Reggaeton En Vivo" data-track-src="audio/audio1.mp3">
+                            <span class="playlist-rank">02</span>
+                            <img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?q=80&w=900&auto=format&fit=crop" alt="Portada de Reggaeton En Vivo">
+                            <div class="playlist-copy">
+                                <h3>Reggaeton En Vivo</h3>
+                                <p>Energia urbana directo desde cabina.</p>
+                                <small>+ 980k reproducciones</small>
+                            </div>
+                            <button class="playlist-play-btn" type="button" aria-pressed="false">Play</button>
+                        </article>
+                        <article class="playlist-card" data-track-title="Top Baladas" data-track-src="audio/audio1.mp3">
+                            <span class="playlist-rank">03</span>
+                            <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=900&auto=format&fit=crop" alt="Portada de Top Baladas">
+                            <div class="playlist-copy">
+                                <h3>Top Baladas</h3>
+                                <p>Canciones romanticas para acompanarte.</p>
+                                <small>+ 760k reproducciones</small>
+                            </div>
+                            <button class="playlist-play-btn" type="button" aria-pressed="false">Play</button>
+                        </article>
+                        <article class="playlist-card" data-track-title="Latina Clasica" data-track-src="audio/audio1.mp3">
+                            <span class="playlist-rank">04</span>
+                            <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&w=900&auto=format&fit=crop" alt="Portada de Latina Clasica">
+                            <div class="playlist-copy">
+                                <h3>Latina Clasica</h3>
+                                <p>Exitos que siempre vuelven.</p>
+                                <small>+ 540k reproducciones</small>
+                            </div>
+                            <button class="playlist-play-btn" type="button" aria-pressed="false">Play</button>
+                        </article>
+                        <article class="playlist-card" data-track-title="Salsa Brava" data-track-src="audio/audio1.mp3">
+                            <span class="playlist-rank">05</span>
+                            <img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?q=80&w=900&auto=format&fit=crop" alt="Portada de Salsa Brava">
+                            <div class="playlist-copy">
+                                <h3>Salsa Brava</h3>
+                                <p>Ritmo caliente para subir el volumen.</p>
+                                <small>+ 510k reproducciones</small>
+                            </div>
+                            <button class="playlist-play-btn" type="button" aria-pressed="false">Play</button>
+                        </article>
+                        <article class="playlist-card" data-track-title="Cumbia Latina" data-track-src="audio/audio1.mp3">
+                            <span class="playlist-rank">06</span>
+                            <img src="https://images.unsplash.com/photo-1521337581100-8ca9a73a5f79?q=80&w=900&auto=format&fit=crop" alt="Portada de Cumbia Latina">
+                            <div class="playlist-copy">
+                                <h3>Cumbia Latina</h3>
+                                <p>Favoritas para bailar sin pausa.</p>
+                                <small>+ 480k reproducciones</small>
+                            </div>
+                            <button class="playlist-play-btn" type="button" aria-pressed="false">Play</button>
+                        </article>
+                        <article class="playlist-card" data-track-title="Pop Latino" data-track-src="audio/audio1.mp3">
+                            <span class="playlist-rank">07</span>
+                            <img src="https://images.unsplash.com/photo-1506157786151-b8491531f063?q=80&w=900&auto=format&fit=crop" alt="Portada de Pop Latino">
+                            <div class="playlist-copy">
+                                <h3>Pop Latino</h3>
+                                <p>Lo nuevo y lo mas cantado.</p>
+                                <small>+ 430k reproducciones</small>
+                            </div>
+                            <button class="playlist-play-btn" type="button" aria-pressed="false">Play</button>
+                        </article>
+                        <article class="playlist-card" data-track-title="Noche Urbana" data-track-src="audio/audio1.mp3">
+                            <span class="playlist-rank">08</span>
+                            <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=900&auto=format&fit=crop" alt="Portada de Noche Urbana">
+                            <div class="playlist-copy">
+                                <h3>Noche Urbana</h3>
+                                <p>Beats para cerrar el dia.</p>
+                                <small>+ 390k reproducciones</small>
+                            </div>
+                            <button class="playlist-play-btn" type="button" aria-pressed="false">Play</button>
+                        </article>
+                        <article class="playlist-card" data-track-title="Latina Romantica" data-track-src="audio/audio1.mp3">
+                            <span class="playlist-rank">09</span>
+                            <img src="https://images.unsplash.com/photo-1525201548942-d8732f6617a0?q=80&w=900&auto=format&fit=crop" alt="Portada de Latina Romantica">
+                            <div class="playlist-copy">
+                                <h3>Latina Romantica</h3>
+                                <p>Suaves, cercanas y memorables.</p>
+                                <small>+ 360k reproducciones</small>
+                            </div>
+                            <button class="playlist-play-btn" type="button" aria-pressed="false">Play</button>
+                        </article>
+                        <article class="playlist-card" data-track-title="Fiesta Weekend" data-track-src="audio/audio1.mp3">
+                            <span class="playlist-rank">10</span>
+                            <img src="https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?q=80&w=900&auto=format&fit=crop" alt="Portada de Fiesta Weekend">
+                            <div class="playlist-copy">
+                                <h3>Fiesta Weekend</h3>
+                                <p>El cierre perfecto para la semana.</p>
+                                <small>+ 320k reproducciones</small>
+                            </div>
+                            <button class="playlist-play-btn" type="button" aria-pressed="false">Play</button>
+                        </article>
                     </div>
-                    <button class="playlist-play-btn" type="button" aria-pressed="false">Play</button>
-                </article>
-                <article class="playlist-card" data-track-title="Reggaeton En Vivo">
-                    <span class="playlist-rank">02</span>
-                    <div class="playlist-copy">
-                        <h3>Reggaeton En Vivo</h3>
-                        <p>Lo que mas suena en cabina y en la comunidad.</p>
-                        <small>+ 980k reproducciones</small>
-                    </div>
-                    <button class="playlist-play-btn" type="button" aria-pressed="false">Play</button>
-                </article>
-                <article class="playlist-card" data-track-title="Top Baladas">
-                    <span class="playlist-rank">03</span>
-                    <div class="playlist-copy">
-                        <h3>Top Baladas</h3>
-                        <p>Las canciones romanticas que mas acompañan el dia.</p>
-                        <small>+ 760k reproducciones</small>
-                    </div>
-                    <button class="playlist-play-btn" type="button" aria-pressed="false">Play</button>
-                </article>
-                <article class="playlist-card" data-track-title="Latina Clasica">
-                    <span class="playlist-rank">04</span>
-                    <div class="playlist-copy">
-                        <h3>Latina Clasica</h3>
-                        <p>Exitos que nunca pasan de moda y siempre vuelven.</p>
-                        <small>+ 540k reproducciones</small>
-                    </div>
-                    <button class="playlist-play-btn" type="button" aria-pressed="false">Play</button>
-                </article>
+                </div>
+
+                <button class="carousel-btn carousel-btn-next" id="playlistNext" type="button" aria-label="Ver canciones siguientes">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8.6 18.6 6.6-6.6-6.6-6.6 1.8-1.8 8.4 8.4-8.4 8.4-1.8-1.8Z"/></svg>
+                </button>
             </div>
         </section>
 
@@ -324,5 +400,6 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="playlist.js"></script>
 </body>
 </html>
