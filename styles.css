@@ -73,10 +73,18 @@ body {
     border-radius: 12px;
     display: grid;
     place-items: center;
-    font-weight: 800;
-    font-size: 1.05rem;
     background: linear-gradient(145deg, var(--primary), #8b3dff);
     box-shadow: 0 0 22px rgba(255, 45, 120, 0.45);
+    overflow: hidden;
+    flex: 0 0 auto;
+}
+
+.logo-image {
+    background: transparent;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 .desktop-nav {
@@ -487,6 +495,106 @@ main {
     grid-template-columns: repeat(3, 1fr);
 }
 
+.playlist-section {
+    display: grid;
+    gap: 16px;
+}
+
+.section-head {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 14px;
+}
+
+.section-head h2 {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 2.5rem;
+    letter-spacing: 0.6px;
+    line-height: 0.9;
+}
+
+.playlist-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.playlist-card {
+    padding: 14px 16px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.03));
+    display: grid;
+    grid-template-columns: 44px 1fr auto;
+    gap: 12px;
+    align-items: center;
+    min-height: 98px;
+}
+
+.playlist-card h3 {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 1.7rem;
+    letter-spacing: 0.5px;
+    line-height: 0.92;
+    margin-bottom: 4px;
+}
+
+.playlist-card p {
+    color: var(--muted);
+    line-height: 1.5;
+    font-size: 0.92rem;
+    margin-bottom: 4px;
+}
+
+.playlist-card small {
+    color: var(--secondary);
+    font-weight: 700;
+}
+
+.playlist-rank {
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+    display: grid;
+    place-items: center;
+    font-weight: 800;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.playlist-copy {
+    min-width: 0;
+}
+
+.playlist-play-btn {
+    border: 0;
+    border-radius: 999px;
+    padding: 10px 16px;
+    min-width: 76px;
+    font-weight: 800;
+    color: #fff;
+    cursor: pointer;
+    background: linear-gradient(130deg, var(--primary), #ff5a3b);
+    box-shadow: 0 8px 20px rgba(255, 45, 120, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.playlist-play-btn:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.05);
+}
+
+.playlist-play-btn.is-playing {
+    background: linear-gradient(130deg, #1ec8ff, #7a8dff);
+    box-shadow: 0 10px 24px rgba(30, 200, 255, 0.28);
+}
+
+.playlist-card.is-playing {
+    border-color: rgba(0, 215, 255, 0.35);
+    box-shadow: 0 0 0 1px rgba(0, 215, 255, 0.12), 0 18px 30px rgba(0, 0, 0, 0.16);
+}
+
 .highlight-item {
     padding: 20px;
 }
@@ -852,6 +960,10 @@ audio {
         grid-template-columns: 1fr;
     }
 
+    .playlist-grid {
+        grid-template-columns: 1fr;
+    }
+
     .content-grid {
         grid-template-columns: 1fr;
     }
@@ -885,6 +997,11 @@ audio {
     .hero-features,
     .highlights {
         grid-template-columns: 1fr;
+    }
+
+    .section-head {
+        align-items: start;
+        flex-direction: column;
     }
 
     .player-actions {
@@ -926,5 +1043,19 @@ audio {
     .schedule-list li {
         grid-template-columns: 1fr;
         gap: 8px;
+    }
+
+    .playlist-card {
+        grid-template-columns: 40px 1fr;
+    }
+
+    .playlist-play-btn {
+        grid-column: 2;
+        justify-self: start;
+        min-width: 72px;
+    }
+
+    .playlist-grid {
+        grid-template-columns: 1fr;
     }
 }

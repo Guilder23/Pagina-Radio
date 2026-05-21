@@ -14,7 +14,9 @@
 
     <header class="header">
         <a href="#inicio" class="logo" aria-label="La Nueva Latina inicio">
-            <span class="logo-icon">N</span>
+            <span class="logo-icon">
+                <img src="img/logo.png" alt="Logo de La Nueva Latina" class="logo-image">
+            </span>
             <span class="logo-text">
                 <strong>LA NUEVA LATINA</strong>
                 <small>Tu musica, tu radio</small>
@@ -124,6 +126,55 @@
             </article>
         </section>
 
+        <section class="playlist-section" id="playlists">
+            <div class="section-head">
+                <div>
+                    <p class="eyebrow">Playlist destacada</p>
+                    <h2>Musicas mas escuchadas</h2>
+                </div>
+                <button class="btn btn-ghost" type="button">Ver playlist completa</button>
+            </div>
+
+            <div class="playlist-grid">
+                <article class="playlist-card" data-track-title="Mix Latina 2026">
+                    <span class="playlist-rank">01</span>
+                    <div class="playlist-copy">
+                        <h3>Mix Latina 2026</h3>
+                        <p>Los temas mas pedidos de la semana.</p>
+                        <small>+ 1.2M reproducciones</small>
+                    </div>
+                    <button class="playlist-play-btn" type="button" aria-pressed="false">Play</button>
+                </article>
+                <article class="playlist-card" data-track-title="Reggaeton En Vivo">
+                    <span class="playlist-rank">02</span>
+                    <div class="playlist-copy">
+                        <h3>Reggaeton En Vivo</h3>
+                        <p>Lo que mas suena en cabina y en la comunidad.</p>
+                        <small>+ 980k reproducciones</small>
+                    </div>
+                    <button class="playlist-play-btn" type="button" aria-pressed="false">Play</button>
+                </article>
+                <article class="playlist-card" data-track-title="Top Baladas">
+                    <span class="playlist-rank">03</span>
+                    <div class="playlist-copy">
+                        <h3>Top Baladas</h3>
+                        <p>Las canciones romanticas que mas acompañan el dia.</p>
+                        <small>+ 760k reproducciones</small>
+                    </div>
+                    <button class="playlist-play-btn" type="button" aria-pressed="false">Play</button>
+                </article>
+                <article class="playlist-card" data-track-title="Latina Clasica">
+                    <span class="playlist-rank">04</span>
+                    <div class="playlist-copy">
+                        <h3>Latina Clasica</h3>
+                        <p>Exitos que nunca pasan de moda y siempre vuelven.</p>
+                        <small>+ 540k reproducciones</small>
+                    </div>
+                    <button class="playlist-play-btn" type="button" aria-pressed="false">Play</button>
+                </article>
+            </div>
+        </section>
+
         <section class="content-grid" id="programacion">
             <article class="panel">
                 <div class="panel-head">
@@ -197,6 +248,7 @@
     </div>
 
     <audio id="radioPlayer" preload="none" playsinline></audio>
+    <audio id="playlistPlayer" preload="none" playsinline></audio>
 
     <footer id="contacto">
         <div class="footer-grid">
