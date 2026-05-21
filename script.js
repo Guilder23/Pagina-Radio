@@ -13,6 +13,7 @@ const heroPlayer = document.querySelector(".hero-player");
 const bottomPlayer = document.querySelector(".bottom-player");
 const playlistCards = document.querySelectorAll(".playlist-card");
 const playlistButtons = document.querySelectorAll(".playlist-play-btn");
+const heroTitle = document.querySelector(".hero-title");
 const menuToggle = document.getElementById("menuToggle");
 const closeSidebar = document.getElementById("closeSidebar");
 const sidebar = document.getElementById("mobileSidebar");
@@ -72,6 +73,56 @@ function changeVolume(step) {
 
 function syncVolumeFromSlider() {
     radioPlayer.volume = Number(volumeRange.value) / 100;
+}
+
+function typeHeroTitle() {
+    if (!heroTitle) {
+        return;
+    }
+
+    const lines = Array.from(heroTitle.querySelectorAll(".hero-title-line"));
+    const texts = lines.map((line) => line.dataset.text || "");
+
+    heroTitle.classList.add("is-typing");
+    heroTitle.classList.remove("is-done");
+    lines.forEach((line) => {
+        line.textContent = "";
+    });
+
+    let lineIndex = 0;
+    let charIndex = 0;
+
+    const tick = () => {
+        const currentLine = lines[lineIndex];
+
+        if (!currentLine) {
+            heroTitle.classList.remove("is-typing");
+            heroTitle.classList.add("is-done");
+            return;
+        }
+
+        const text = texts[lineIndex];
+        currentLine.textContent = text.slice(0, charIndex + 1);
+        charIndex += 1;
+
+        if (charIndex < text.length) {
+            window.setTimeout(tick, 90);
+            return;
+        }
+
+        lineIndex += 1;
+        charIndex = 0;
+
+        if (lineIndex < lines.length) {
+            window.setTimeout(tick, 220);
+            return;
+        }
+
+        heroTitle.classList.remove("is-typing");
+        heroTitle.classList.add("is-done");
+    };
+
+    tick();
 }
 
 function updatePlaylistCards(activeButton, isPlaying) {
@@ -189,3 +240,7 @@ revealTargets.forEach((element, index) => {
     element.classList.add("reveal");
     element.style.animationDelay = `${index * 100}ms`;
 });
+
+window.setTimeout(() => {
+    typeHeroTitle();
+}, 220);

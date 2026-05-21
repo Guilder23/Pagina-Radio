@@ -275,8 +275,43 @@ main {
     letter-spacing: 0.8px;
 }
 
-.hero-left h1 span {
+.hero-title {
+    display: grid;
+}
+
+.hero-title-line {
+    display: block;
+    width: fit-content;
+    white-space: nowrap;
+}
+
+.hero-title-line-top {
+    color: #f6f8ff;
+}
+
+.hero-title-line-bottom {
     color: var(--primary);
+}
+
+.hero-title-line::after {
+    content: "";
+    display: inline-block;
+    width: 0.08em;
+    height: 0.9em;
+    margin-left: 0.08em;
+    background: currentColor;
+    vertical-align: -0.08em;
+    opacity: 0;
+}
+
+.hero-title.is-typing .hero-title-line::after {
+    opacity: 1;
+    animation: cursorBlink 0.8s steps(1) infinite;
+}
+
+.hero-title.is-done .hero-title-line::after {
+    opacity: 0;
+    animation: none;
 }
 
 .hero-copy {
