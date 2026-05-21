@@ -1479,7 +1479,8 @@ audio {
     }
 
     .playlist-track {
-        grid-auto-columns: minmax(210px, 72vw);
+        grid-auto-columns: calc((100% - 28px) / 3);
+        gap: 14px;
     }
 
     .carousel-btn-prev {
@@ -1610,16 +1611,68 @@ audio {
     }
 
     .playlist-track {
-        grid-auto-columns: minmax(200px, 78vw);
-        gap: 12px;
+        grid-auto-columns: calc((100% - 10px) / 2);
+        gap: 10px;
     }
 
     .playlist-card {
-        min-height: 292px;
+        min-height: 214px;
+        padding: 7px 7px 10px;
+        gap: 7px;
+    }
+
+    .playlist-card h3 {
+        font-size: 1rem;
+    }
+
+    .playlist-card p {
+        font-size: 0.64rem;
+        line-height: 1.28;
+    }
+
+    .playlist-card small {
+        font-size: 0.62rem;
+    }
+
+    .playlist-rank {
+        top: 11px;
+        left: 11px;
+        width: 32px;
+        height: 26px;
+        font-size: 0.76rem;
+    }
+
+    .playlist-play-btn {
+        min-height: 34px;
+        padding-inline: 8px;
+        font-size: 0.78rem;
     }
 
     .carousel-btn {
         width: 40px;
         height: 40px;
+    }
+}
+
+@media (max-width: 420px) {
+    .playlist-viewport {
+        padding-inline: 24px;
+    }
+
+    .playlist-track {
+        grid-auto-columns: calc((100% - 8px) / 2);
+        gap: 8px;
+    }
+
+    .playlist-card {
+        min-height: 198px;
+    }
+
+    .playlist-card img {
+        aspect-ratio: 1.08;
+    }
+
+    .playlist-card p {
+        display: none;
     }
 }
