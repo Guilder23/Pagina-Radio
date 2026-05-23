@@ -1267,6 +1267,18 @@ footer {
     color: var(--muted);
     text-decoration: none;
     margin-bottom: 7px;
+    transition: color 0.2s ease;
+}
+
+.footer-grid > div:nth-child(3) a {
+    color: var(--secondary);
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.footer-grid > div:nth-child(3) a:hover {
+    color: #00ffff;
+    text-decoration: underline;
 }
 
 .social-links {
