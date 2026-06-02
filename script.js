@@ -266,3 +266,6 @@ revealTargets.forEach((element, index) => {
 window.setTimeout(() => {
     typeHeroTitle();
 }, 220);
+window.addEventListener('load', () => {
+    // nothing for DJ carousel here; logic moved to dj-carousel.js
+});
