@@ -1,15 +1,12 @@
 const playlistViewport = document.getElementById("playlistViewport");
 const playlistPrev = document.getElementById("playlistPrev");
 const playlistNext = document.getElementById("playlistNext");
-const playlistPlayer = document.getElementById("playlistPlayer");
 const spotifyEmbed = document.getElementById("spotifyEmbed");
 const spotifyEmbedWrapper = document.getElementById("spotifyEmbedWrapper");
 const playlistCards = document.querySelectorAll(".playlist-card");
 const playlistButtons = document.querySelectorAll(".playlist-play-btn");
 const radioPlayerForPlaylist = document.getElementById("radioPlayer");
 const spotifyThumbnailCache = new Map();
-
-playlistPlayer.preload = "metadata";
 
 function getSpotifyTrackUrl(spotifyUri) {
     return `https://open.spotify.com/track/${spotifyUri}`;
@@ -133,31 +130,16 @@ function playPlaylistTrack(button) {
         return;
     }
 
-    const trackSrc = card.dataset.trackSrc || "audio/audio1.mp3";
     const spotifyUri = card.dataset.spotifyUri;
-    const spotifyEmbedUrl = spotifyUri ? `https://open.spotify.com/embed/track/${spotifyUri}` : null;
-
-    if (spotifyUri) {
-        if (button.classList.contains("is-playing")) {
-            spotifyEmbed.removeAttribute("src");
-            spotifyEmbedWrapper.hidden = true;
-            updatePlaylistCards(button, false);
-            return;
-        }
-
-        if (!radioPlayerForPlaylist.paused) {
-            radioPlayerForPlaylist.pause();
-        }
-
-        playlistPlayer.pause();
-        spotifyEmbedWrapper.hidden = false;
-        spotifyEmbed.setAttribute("src", spotifyEmbedUrl);
-        updatePlaylistCards(button, true);
+    if (!spotifyUri) {
         return;
     }
 
+    const spotifyEmbedUrl = `https://open.spotify.com/embed/track/${spotifyUri}`;
+
     if (button.classList.contains("is-playing")) {
-        playlistPlayer.pause();
+        spotifyEmbed.removeAttribute("src");
+        spotifyEmbedWrapper.hidden = true;
         updatePlaylistCards(button, false);
         return;
     }
@@ -166,19 +148,9 @@ function playPlaylistTrack(button) {
         radioPlayerForPlaylist.pause();
     }
 
-    spotifyEmbed.removeAttribute("src");
-    spotifyEmbedWrapper.hidden = true;
-
-    if (playlistPlayer.getAttribute("src") !== trackSrc) {
-        playlistPlayer.setAttribute("src", trackSrc);
-    }
-
-    playlistPlayer.currentTime = 0;
-    playlistPlayer.play().then(() => {
-        updatePlaylistCards(button, true);
-    }).catch(() => {
-        updatePlaylistCards(button, false);
-    });
+    spotifyEmbedWrapper.hidden = false;
+    spotifyEmbed.setAttribute("src", spotifyEmbedUrl);
+    updatePlaylistCards(button, true);
 }
 
 playlistPrev.addEventListener("click", () => movePlaylistCarousel(-1));
@@ -200,14 +172,6 @@ playlistViewport.addEventListener("keydown", (event) => {
 
 playlistButtons.forEach((button) => {
     button.addEventListener("click", () => playPlaylistTrack(button));
-});
-
-playlistPlayer.addEventListener("pause", () => {
-    updatePlaylistCards(null, false);
-});
-
-playlistPlayer.addEventListener("ended", () => {
-    updatePlaylistCards(null, false);
 });
 
 updateCarouselButtons();
