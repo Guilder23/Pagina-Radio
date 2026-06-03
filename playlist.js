@@ -8,11 +8,59 @@ const playlistButtons = document.querySelectorAll(".playlist-play-btn");
 const radioPlayerForPlaylist = document.getElementById("radioPlayer");
 const spotifyThumbnailCache = new Map();
 
+const spotifyTrackMetadataFallbacks = {
+    "0TDLuuLlV54CkRRUOahJb4": {
+        title: "Titanium (feat. Sia)",
+        author: "David Guetta, Sia",
+        extra: "Disponible en Spotify",
+    },
+    "23L5CiUhw2jV1OIMwthR3S": {
+        title: "In the Name of Love",
+        author: "Martin Garrix, Bebe Rexha",
+        extra: "Disponible en Spotify",
+    },
+    "704mzKiY5HnMMSeTmzak3v": {
+        title: "SI MUA",
+        author: "Dafina Zeqiri, Elgit Doda",
+        extra: "Disponible en Spotify",
+    },
+    "2a1o6ZejUi8U3wzzOtCOYw": {
+        title: "Danza Kuduro",
+        author: "Don Omar, Lucenzo",
+        extra: "Disponible en Spotify",
+    },
+    "7qiZfU4dY1lWllzX7mPBI3": {
+        title: "Shape of You",
+        author: "Ed Sheeran",
+        extra: "Disponible en Spotify",
+    },
+    "6WrUT7FOAlDscRWU7ndmyd": {
+        title: "Viva La Vida",
+        author: "Coldplay",
+        extra: "Disponible en Spotify",
+    },
+    "4uLU6hMCjMI75M1A2tKUQC": {
+        title: "Never Gonna Give You Up",
+        author: "Rick Astley",
+        extra: "Disponible en Spotify",
+    },
+    "1mPwde0APTwtRskiOv9w55": {
+        title: "I've Come to Worship",
+        author: "Sion & Shannon Alford",
+        extra: "Disponible en Spotify",
+    },
+    "1eOJAiCKFuMda0fPRvjcuc": {
+        title: "Hold My Hand",
+        author: "Jess Glynne",
+        extra: "Disponible en Spotify",
+    },
+};
+
 function getSpotifyTrackUrl(spotifyUri) {
     return `https://open.spotify.com/track/${spotifyUri}`;
 }
 
-async function fetchSpotifyThumbnail(spotifyUri) {
+async function fetchSpotifyMetadata(spotifyUri) {
     if (!spotifyUri) {
         return null;
     }
@@ -21,50 +69,89 @@ async function fetchSpotifyThumbnail(spotifyUri) {
         return spotifyThumbnailCache.get(spotifyUri);
     }
 
-    try {
-        const response = await fetch(`https://open.spotify.com/oembed?url=${encodeURIComponent(getSpotifyTrackUrl(spotifyUri))}`);
-        if (!response.ok) {
-            return null;
-        }
+    return fetch(`https://open.spotify.com/oembed?url=${encodeURIComponent(getSpotifyTrackUrl(spotifyUri))}`)
+        .then((response) => {
+            if (!response.ok) {
+                return null;
+            }
+            return response.json();
+        })
+        .then((data) => {
+            if (!data) {
+                return null;
+            }
 
-        const data = await response.json();
-        const thumbnailUrl = data.thumbnail_url || null;
+            const fallback = spotifyTrackMetadataFallbacks[spotifyUri] || {};
+            const metadata = {
+                title: data.title || fallback.title || null,
+                author: data.author_name || fallback.author || null,
+                provider: data.provider_name || null,
+                thumbnail: data.thumbnail_url || null,
+                extra: fallback.extra || null,
+            };
 
-        if (thumbnailUrl) {
-            spotifyThumbnailCache.set(spotifyUri, thumbnailUrl);
-        }
-
-        return thumbnailUrl;
-    } catch {
-        return null;
-    }
-}
-
-async function setSpotifyCoverImage(card) {
-    const spotifyUri = card.dataset.spotifyUri;
-    const img = getCardImage(card);
-    if (!spotifyUri || !img) {
-        return;
-    }
-
-    const thumbnailUrl = await fetchSpotifyThumbnail(spotifyUri);
-    if (!thumbnailUrl) {
-        return;
-    }
-
-    img.src = thumbnailUrl;
-    if (card.dataset.trackTitle) {
-        img.alt = `${card.dataset.trackTitle} portada de Spotify`;
-    }
+            spotifyThumbnailCache.set(spotifyUri, metadata);
+            return metadata;
+        })
+        .catch(() => null);
 }
 
 function getCardImage(card) {
     return card?.querySelector("img");
 }
 
-function initializePlaylistCoverImages() {
+async function setSpotifyMetadata(card) {
+    const spotifyUri = card.dataset.spotifyUri;
+    if (!spotifyUri) {
+        return;
+    }
+
+    const metadata = await fetchSpotifyMetadata(spotifyUri);
+    if (!metadata) {
+        return;
+    }
+
+    const img = getCardImage(card);
+    const titleElement = card.querySelector(".playlist-copy h3");
+    const subtitleElement = card.querySelector(".playlist-copy p");
+    const smallElement = card.querySelector(".playlist-copy small");
+
+    if (img && metadata.thumbnail) {
+        img.src = metadata.thumbnail;
+    }
+
+    if (metadata.title && titleElement) {
+        titleElement.textContent = metadata.title;
+        card.dataset.trackTitle = metadata.title;
+    }
+
+    if (metadata.author && subtitleElement) {
+        subtitleElement.textContent = metadata.author;
+    }
+
+    if (smallElement) {
+        smallElement.textContent = metadata.extra || metadata.provider || "Spotify";
+    }
+}
+
+function initializePlaylistMetadata() {
     playlistCards.forEach((card) => {
-        setSpotifyCoverImage(card);
+        const titleElement = card.querySelector(".playlist-copy h3");
+        const subtitleElement = card.querySelector(".playlist-copy p");
+        const smallElement = card.querySelector(".playlist-copy small");
+        const fallback = spotifyTrackMetadataFallbacks[card.dataset.spotifyUri] || {};
+
+        if (titleElement) {
+            titleElement.textContent = fallback.title || "Cargando...";
+        }
+        if (subtitleElement) {
+            subtitleElement.textContent = fallback.author || "Spotify";
+        }
+        if (smallElement) {
+            smallElement.textContent = fallback.extra || "Disponible en Spotify";
+        }
+
+        setSpotifyMetadata(card);
     });
 }
 
@@ -82,7 +169,7 @@ playlistCards.forEach((card) => {
     });
 });
 
-initializePlaylistCoverImages();
+initializePlaylistMetadata();
 
 function getCarouselStep() {
     const firstCard = playlistCards[0];
@@ -135,7 +222,7 @@ function playPlaylistTrack(button) {
         return;
     }
 
-    const spotifyEmbedUrl = `https://open.spotify.com/embed/track/${spotifyUri}`;
+    const spotifyEmbedUrl = `https://open.spotify.com/embed/track/${spotifyUri}?autoplay=1`;
 
     if (button.classList.contains("is-playing")) {
         spotifyEmbed.removeAttribute("src");
@@ -152,6 +239,14 @@ function playPlaylistTrack(button) {
     spotifyEmbed.setAttribute("src", spotifyEmbedUrl);
     updatePlaylistCards(button, true);
 }
+
+radioPlayerForPlaylist.addEventListener("play", () => {
+    if (!spotifyEmbedWrapper.hidden) {
+        spotifyEmbed.removeAttribute("src");
+        spotifyEmbedWrapper.hidden = true;
+        updatePlaylistCards(null, false);
+    }
+});
 
 playlistPrev.addEventListener("click", () => movePlaylistCarousel(-1));
 playlistNext.addEventListener("click", () => movePlaylistCarousel(1));
